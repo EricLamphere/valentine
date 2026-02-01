@@ -1,0 +1,30 @@
+version: "3"
+
+tasks:
+  setup:
+    desc: Create Python virtual environment
+    cmds:
+      - python3 -m venv .venv
+      - task: update
+
+  update:
+    desc: Install/update packages in virtual environment
+    cmds:
+      - .venv/bin/pip install -r requirements.txt
+
+  start:
+    desc: Print the source command to activate the virtual environment
+    silent: true
+    cmds:
+      - test -d .venv || task setup
+      - echo "source .venv/bin/activate"
+
+  build:
+    desc: Build the static site
+    cmds:
+      - .venv/bin/python build.py
+
+  open:
+    desc: Open the generated html file
+    cmds:
+      - open _site/index.html

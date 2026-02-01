@@ -1,0 +1,20 @@
+pages:
+  - title: "Will you be my Valentine?"
+    yes_button: "YES!"
+    no_button: "No"
+  - title: "Wait for real? Are you sure?"
+    yes_button: "Yes of course you're the best husband in the world and the only valentine I could possibly ever want"
+    no_button: "Heck no get lost dweeb"
+  - title: "Wow this is so exciting. But that 'no' button can be tricky sometimes, so I'll ask you one last time... Will you be my valentine?"
+    yes_button: "Stop asking me, YES!"
+    no_button: "Ew no"
+agenda_file: agenda.md
+background: "linear-gradient(135deg, #ffe0e6 0%, #ffc2d1 50%, #ffb3c6 100%)"
+floating:
+  symbols: ["❤", "💕", "♥", "🌹", "💋"]
+  count: 30
+  opacity: 0.15
+  min_duration: 5
+  max_duration: 20
+  min_size: 1
+  max_size: 3
