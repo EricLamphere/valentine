@@ -2,21 +2,16 @@
 
 ## Morning
 
-- Sleep in together
-- Breakfast in bed: pancakes, strawberries & coffee
+- Sleep in together (or optional gym trip)
+- Breakfast at Milkweed
 
 ## Afternoon
 
-- Couples spa / relaxation time
-- Walk in the park
+- Relax and hangout with Chopper
+- Watch a movie or binge a tv show
 
 ## Evening
 
-- Dinner reservation at our favorite restaurant
-- Dessert: chocolate fondue
-- Movie night at home
+- Dinner at Moonshine 152 at 4:00pm
+- Golf sim with friends
 
-## All Day
-
-- Unlimited hugs & kisses
-- No chores allowed

@@ -14,7 +14,7 @@ floating:
   symbols: ["❤", "💕", "♥", "🌹", "💋"]
   count: 30
   opacity: 0.15
-  min_duration: 5
-  max_duration: 20
+  min_duration: 2
+  max_duration: 15
   min_size: 1
   max_size: 3.5
