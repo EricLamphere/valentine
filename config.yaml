@@ -8,6 +8,9 @@ pages:
   - title: "Wow this is so exciting. But that 'no' button can be tricky sometimes, so I'll ask you one last time... Will you be my valentine?"
     yes_button: "Stop asking me, YES!"
     no_button: "Ew no"
+fireworks:
+  title: "Yay!"
+  duration_seconds: 10
 agenda_file: agenda.md
 background: "linear-gradient(135deg, #ffe0e6 0%, #ffc2d1 50%, #ffb3c6 100%)"
 floating:

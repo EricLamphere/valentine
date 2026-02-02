@@ -81,7 +81,7 @@ def main():
     button_template = env.get_template("button_page.html")
     for i, page in enumerate(pages):
         is_last = i == len(pages) - 1
-        yes_href = "agenda.html" if is_last else page_filename(i + 1)
+        yes_href = "fireworks.html" if is_last else page_filename(i + 1)
         filename = page_filename(i)
 
         html = button_template.render(
@@ -95,6 +95,22 @@ def main():
         with open(filepath, "w") as f:
             f.write(html)
         built_files.append(filename)
+
+    fireworks_config = config.get("fireworks", {})
+    fireworks_title = fireworks_config.get("title", "Yay!")
+    fireworks_duration = fireworks_config.get("duration_seconds", 5)
+
+    fireworks_template = env.get_template("fireworks_page.html")
+    html = fireworks_template.render(
+        **shared_vars,
+        title=fireworks_title,
+        next_href="agenda.html",
+        redirect_ms=int(fireworks_duration * 1000),
+    )
+    filepath = os.path.join(out_dir, "fireworks.html")
+    with open(filepath, "w") as f:
+        f.write(html)
+    built_files.append("fireworks.html")
 
     agenda_template = env.get_template("agenda_page.html")
     html = agenda_template.render(
