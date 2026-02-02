@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wow this is so exciting. But that 'no' button can be tricky sometimes, so I'll ask you one last time... Will you be my valentine?</title>
+    <style>
+        :root { --float-opacity: 0.15; }
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        background: linear-gradient(135deg, #ffe0e6 0%, #ffc2d1 50%, #ffb3c6 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+    h1 {
+        color: #c2185b;
+        font-size: 2.8rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        padding: 0 1rem;
+    }
+    .btn-yes {
+        background: linear-gradient(135deg, #e91e63, #c2185b);
+        color: white;
+        border: none;
+        padding: 1.2rem 3rem;
+        font-size: 1.6rem;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+        transition: transform 0.2s, box-shadow 0.2s;
+        max-width: 90vw;
+        text-align: center;
+        line-height: 1.4;
+        text-decoration: none;
+        display: inline-block;
+    }
+    .btn-yes:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    }
+    .btn-no {
+        background: #9e9e9e;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 30px;
+        cursor: pointer;
+        position: fixed;
+        transition: top 0.15s ease-out, left 0.15s ease-out;
+        user-select: none;
+    }
+    .hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+    }
+    .heart {
+        position: absolute;
+        font-size: 1.5rem;
+        opacity: var(--float-opacity, 0.15);
+        animation: float-up linear forwards;
+    }
+    @keyframes float-up {
+        0% { transform: translateY(100vh) rotate(0deg); opacity: var(--float-opacity, 0.15); }
+        50% { opacity: calc(var(--float-opacity, 0.15) + 0.1); }
+        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    <div class="content">
+        <h1>Wow this is so exciting. But that 'no' button can be tricky sometimes, so I'll ask you one last time... Will you be my valentine?</h1>
+        <a class="btn-yes" href="agenda.html">Stop asking me, YES!</a>
+        <button class="btn-no" id="no-btn">Ew no</button>
+    </div>
+    <script>
+        (function() {
+        var container = document.querySelector('.hearts');
+        var symbols = ["\u2764", "\ud83d\udc95", "\u2665", "\ud83c\udf39", "\ud83d\udc8b"];
+        var count = 30;
+        var spawned = 0;
+
+        function spawnHeart() {
+            if (spawned >= count) return;
+            var el = document.createElement('div');
+            el.className = 'heart';
+            el.textContent = symbols[spawned % symbols.length];
+            el.style.left = Math.random() * 100 + '%';
+            var dur = 2 + Math.random() * 13;
+            el.style.animationDuration = dur + 's';
+            el.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+            el.style.animationIterationCount = 'infinite';
+            container.appendChild(el);
+            spawned++;
+        }
+
+        setInterval(spawnHeart, 500);
+    })();
+
+        (function() {
+        var noBtn = document.getElementById('no-btn');
+        var yesBtn = document.querySelector('.btn-yes');
+        var PROXIMITY = 100;
+        var BOUND = 150;
+
+        // Position the No button just below the YES button (centered)
+        var yesRect = yesBtn.getBoundingClientRect();
+        var noBtnWidth = noBtn.offsetWidth;
+        var noBtnHeight = noBtn.offsetHeight;
+        var originX = yesRect.left + yesRect.width / 2 - noBtnWidth / 2;
+        var originY = yesRect.bottom + 20;
+        noBtn.style.left = originX + 'px';
+        noBtn.style.top = originY + 'px';
+
+        var cursorX = -9999;
+        var cursorY = -9999;
+
+        function dodge() {
+            var rect = noBtn.getBoundingClientRect();
+            var btnCX = rect.left + rect.width / 2;
+            var btnCY = rect.top + rect.height / 2;
+
+            // Flee directly away from cursor
+            var dx = btnCX - cursorX;
+            var dy = btnCY - cursorY;
+            var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+            var angle = Math.atan2(dy, dx);
+
+            // Add slight randomness to the angle so it's not perfectly predictable
+            angle += (Math.random() - 0.5) * 0.8;
+
+            // Always jump farther than PROXIMITY so cursor is out of range
+            var jumpDist = PROXIMITY + 50 + Math.random() * 50;
+            var newX = btnCX + Math.cos(angle) * jumpDist - rect.width / 2;
+            var newY = btnCY + Math.sin(angle) * jumpDist - rect.height / 2;
+
+            // Clamp within BOUND px of origin
+            newX = Math.max(originX - BOUND, Math.min(originX + BOUND, newX));
+            newY = Math.max(originY - BOUND, Math.min(originY + BOUND, newY));
+
+            // Keep on screen
+            newX = Math.max(5, Math.min(window.innerWidth - rect.width - 5, newX));
+            newY = Math.max(5, Math.min(window.innerHeight - rect.height - 5, newY));
+
+            // Avoid overlapping the YES button
+            var yR = yesBtn.getBoundingClientRect();
+            var wouldOverlap = (
+                newX < yR.right + 10 &&
+                newX + rect.width > yR.left - 10 &&
+                newY < yR.bottom + 10 &&
+                newY + rect.height > yR.top - 10
+            );
+            if (wouldOverlap) {
+                newY = yR.bottom + 20;
+            }
+
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        // Dodge on mouse proximity
+        document.addEventListener('mousemove', function(e) {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            var rect = noBtn.getBoundingClientRect();
+            var dx = cursorX - (rect.left + rect.width / 2);
+            var dy = cursorY - (rect.top + rect.height / 2);
+            if (Math.sqrt(dx * dx + dy * dy) < PROXIMITY) {
+                dodge();
+            }
+        });
+
+        // Dodge on touch proximity
+        document.addEventListener('touchmove', function(e) {
+            var touch = e.touches[0];
+            cursorX = touch.clientX;
+            cursorY = touch.clientY;
+            var rect = noBtn.getBoundingClientRect();
+            var dx = cursorX - (rect.left + rect.width / 2);
+            var dy = cursorY - (rect.top + rect.height / 2);
+            if (Math.sqrt(dx * dx + dy * dy) < PROXIMITY) {
+                dodge();
+            }
+        });
+
+        // Dodge on click / tap
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            dodge();
+        });
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            dodge();
+        });
+    })();
+
+    </script>
+</body>
+</html>

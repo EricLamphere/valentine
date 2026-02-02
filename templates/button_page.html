@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content">
+        <h1>{{ title }}</h1>
+        <a class="btn-yes" href="{{ yes_href }}">{{ yes_text }}</a>
+        <button class="btn-no" id="no-btn">{{ no_text }}</button>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    {% include "dodging.js" %}
+{% endblock %}

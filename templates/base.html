@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        :root { --float-opacity: {{ opacity }}; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: {{ background }};
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #c2185b;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            padding: 0 1rem;
+        }
+        .btn-yes {
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 90vw;
+            text-align: center;
+            line-height: 1.4;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+        }
+        .btn-no {
+            background: #9e9e9e;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 30px;
+            cursor: pointer;
+            position: fixed;
+            transition: top 0.15s ease-out, left 0.15s ease-out;
+            user-select: none;
+        }
+        .missed-bubble {
+            position: absolute;
+            left: 50%;
+            bottom: 100%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            background: #fff;
+            color: #c2185b;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        .missed-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #fff;
+        }
+        .missed-bubble.show {
+            opacity: 1;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: var(--float-opacity, 0.15);
+            animation: float-up linear forwards;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: var(--float-opacity, 0.15); }
+            50% { opacity: calc(var(--float-opacity, 0.15) + 0.1); }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+    {% block content %}{% endblock %}
+    <script>
+    {% include "floating.js" %}
+    {% block extra_js %}{% endblock %}
+    </script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 version: "3"
 
 tasks:
+
+  # Virtual environment
   setup:
     desc: Create Python virtual environment
     cmds:
@@ -19,6 +21,8 @@ tasks:
       - test -d .venv || task setup
       - echo "source .venv/bin/activate"
 
+
+  # App
   build:
     desc: Build the static site
     cmds:
@@ -28,3 +32,9 @@ tasks:
     desc: Open the generated html file
     cmds:
       - open _site/index.html
+
+  run: 
+    desc: Build and open the site
+    cmds:
+      - task: build
+      - task: open

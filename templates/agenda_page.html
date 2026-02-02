@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block extra_css %}
+        body {
+            overflow: auto;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+        }
+        .agenda {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(194, 24, 91, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+        .agenda h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .agenda h2 {
+            color: #e91e63;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .agenda ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .agenda li {
+            padding: 0.4rem 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .agenda li::before {
+            content: '\2764\FE0F ';
+        }
+        .agenda p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+{% endblock %}
+{% block content %}
+    <div class="agenda">
+        {{ agenda_html | safe }}
+    </div>
+{% endblock %}

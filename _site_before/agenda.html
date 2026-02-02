@@ -1,0 +1,185 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Our Valentine's Day</title>
+        <style>
+            :root { --float-opacity: 0.15; }
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #ffe0e6 0%, #ffc2d1 50%, #ffb3c6 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #c2185b;
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            padding: 0 1rem;
+        }
+        .btn-yes {
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.6rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            max-width: 90vw;
+            text-align: center;
+            line-height: 1.4;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+        }
+        .btn-no {
+            background: #9e9e9e;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            border-radius: 30px;
+            cursor: pointer;
+            position: fixed;
+            transition: top 0.15s ease-out, left 0.15s ease-out;
+            user-select: none;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: var(--float-opacity, 0.15);
+            animation: float-up linear forwards;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: var(--float-opacity, 0.15); }
+            50% { opacity: calc(var(--float-opacity, 0.15) + 0.1); }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+            body {
+            overflow: auto;
+            justify-content: flex-start;
+            padding: 2rem 1rem;
+        }
+        .agenda {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(194, 24, 91, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+        .agenda h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .agenda h2 {
+            color: #e91e63;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .agenda ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .agenda li {
+            padding: 0.4rem 0;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        .agenda li::before {
+            content: '\2764\FE0F ';
+        }
+        .agenda p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        </style>
+    </head>
+    <body>
+        <div class="hearts"></div>
+        <div class="agenda">
+            <h1>Valentine's Day Agenda</h1>
+<h2>Morning</h2>
+<ul>
+<li>Sleep in together (or optional gym trip)</li>
+<li>Breakfast at Milkweed</li>
+</ul>
+<h2>Afternoon</h2>
+<ul>
+<li>Relax and hangout with Chopper</li>
+<li>Watch a movie or binge a tv show</li>
+</ul>
+<h2>Evening</h2>
+<ul>
+<li>Dinner at Moonshine 152 at 4:00pm</li>
+<li>Golf sim with friends</li>
+</ul>
+        </div>
+        <script>
+            (function() {
+            var container = document.querySelector('.hearts');
+            var symbols = ["\u2764", "\ud83d\udc95", "\u2665", "\ud83c\udf39", "\ud83d\udc8b"];
+            var count = 30;
+            var spawned = 0;
+
+            function spawnHeart() {
+                if (spawned >= count) return;
+                var el = document.createElement('div');
+                el.className = 'heart';
+                el.textContent = symbols[spawned % symbols.length];
+                el.style.left = Math.random() * 100 + '%';
+                var dur = 2 + Math.random() * 13;
+                el.style.animationDuration = dur + 's';
+                el.style.fontSize = (1 + Math.random() * 2.5) + 'rem';
+                el.style.animationIterationCount = 'infinite';
+                container.appendChild(el);
+                spawned++;
+            }
+
+            setInterval(spawnHeart, 500);
+        })();
+
+        </script>
+    </body>
+    </html>
