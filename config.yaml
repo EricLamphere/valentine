@@ -5,7 +5,7 @@ pages:
   - title: "Wait for real? Are you sure?"
     yes_button: "Yes of course you're the best husband in the world and the only valentine I could possibly ever want"
     no_button: "Heck no get lost dweeb"
-  - title: "Wow this is so exciting. But that 'no' button can be tricky sometimes, so I'll ask you one last time... Will you be my valentine?"
+  - title: "Wow this is so exciting. But that 'no' button can be tricky, so I'll ask you one last time... Will you be my valentine?"
     yes_button: "Stop asking me, YES!"
     no_button: "Ew no"
 fireworks:
