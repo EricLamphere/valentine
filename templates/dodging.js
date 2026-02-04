@@ -24,7 +24,7 @@
         "I'm too fast",
         'Scram!',
         'Ouch! You got me!... (sike)',
-        'Okay for real just clicm yes...'
+        'Okay for real just click yes...'
     ];
     var bubbleIndex = 0;
     var bubble = document.createElement('div');
