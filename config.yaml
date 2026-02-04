@@ -10,7 +10,8 @@ pages:
     no_button: "Ew no"
 fireworks:
   title: "Yay!"
-  duration_seconds: 10
+  duration_seconds: 5
+  button_text: "Here's the plan..."
 agenda_file: agenda.md
 background: "linear-gradient(135deg, #ffe0e6 0%, #ffc2d1 50%, #ffb3c6 100%)"
 floating:

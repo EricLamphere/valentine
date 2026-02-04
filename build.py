@@ -99,13 +99,15 @@ def main():
     fireworks_config = config.get("fireworks", {})
     fireworks_title = fireworks_config.get("title", "Yay!")
     fireworks_duration = fireworks_config.get("duration_seconds", 5)
+    fireworks_button_text = fireworks_config.get("button_text", "Here's the plan...")
 
     fireworks_template = env.get_template("fireworks_page.html")
     html = fireworks_template.render(
         **shared_vars,
         title=fireworks_title,
         next_href="agenda.html",
-        redirect_ms=int(fireworks_duration * 1000),
+        delay_ms=int(fireworks_duration * 1000),
+        button_text=fireworks_button_text,
     )
     filepath = os.path.join(out_dir, "fireworks.html")
     with open(filepath, "w") as f:

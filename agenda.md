@@ -7,11 +7,15 @@
 
 ## Afternoon
 
-- Relax and hangout with Chopper
-- Watch a movie or binge a tv show
+- Shower, relax and hangout with Chopper
+- TBD something with friends
 
 ## Evening
 
 - Dinner at Moonshine 152 at 4:00pm
-- Golf sim with friends
+- Sweet treat of your choosing and I'll make it happen
 
+## Sweet Treat Options 🍪
+- Dessert at the restaurant
+- Donuts at Doughboy Donuts
+- Anything else of your choosing

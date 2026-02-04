@@ -22,31 +22,26 @@
             text-shadow: 0 0 20px rgba(233, 30, 99, 0.8),
                          0 0 40px rgba(233, 30, 99, 0.4);
         }
-        .skip-btn {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
+        .continue-btn {
             z-index: 3;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 20px;
-            transition: color 0.2s, border-color 0.2s;
+            pointer-events: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            visibility: hidden;
         }
-        .skip-btn:hover {
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.7);
+        .continue-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
         }
 {% endblock %}
 {% block content %}
     <canvas id="fireworks"></canvas>
     <div class="content">
         <h1>{{ title }}</h1>
+        <a href="{{ next_href }}" class="btn-yes continue-btn" id="continue-btn">{{ button_text }}</a>
     </div>
-    <a href="{{ next_href }}" class="skip-btn">Take me to the agenda</a>
 {% endblock %}
 {% block extra_js %}
     {% include "fireworks.js" %}

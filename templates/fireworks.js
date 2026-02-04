@@ -121,8 +121,8 @@
 
     loop();
 
-    // Auto-redirect after configured delay
+    // Show continue button after configured delay
     setTimeout(function () {
-        window.location.href = '{{ next_href }}';
-    }, {{ redirect_ms }});
+        document.getElementById('continue-btn').classList.add('show');
+    }, {{ delay_ms }});
 })();
